@@ -25,5 +25,6 @@ operators = {
 parser = ExpressionParser(operators=operators)
 parser.evaluate_expression("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3")
 
+
 result = ' '.join([str(token) for token in parser.output_queue.values])
 print(result)

@@ -44,7 +44,7 @@ class ExpressionParser:
             token = self._build_next_operator_token()
         elif self._is_parenthesis(self.current_char):
             token = self._build_next_parenthesis_token()
-        print(token.text)
+        # print(token.text)
         return token
 
     def process_token(self, token: Token):
