@@ -1,5 +1,5 @@
 from calculator.operators import Associativity
-from calculator.token import Token
+from calculator.tokens import Token
 
 
 class Parenthesis(Token):
@@ -12,6 +12,9 @@ class Parenthesis(Token):
             return Associativity.LEFT
         else:
             return Associativity.RIGHT
+
+    def is_left(self):
+        return self.associativity == Associativity.LEFT
 
     def __str__(self):
         return "(" if self.associativity == Associativity.LEFT else ")"

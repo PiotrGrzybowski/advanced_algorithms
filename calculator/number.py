@@ -1,4 +1,4 @@
-from calculator.token import Token
+from calculator.tokens import Token
 
 
 class Number(Token):

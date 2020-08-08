@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from enum import Enum
 
-from calculator.token import Token
+from calculator.tokens import Token
 
 
 class Associativity(Enum):
