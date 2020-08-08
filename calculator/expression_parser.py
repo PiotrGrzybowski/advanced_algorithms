@@ -20,21 +20,25 @@ class ExpressionParser:
         self.index = 0
         self.output_queue.clear()
 
-        self.parse_postfix_expression()
+        self.parse_to_postfix_expression()
 
-    def parse_postfix_expression(self):
-        token = self.read_next_token()
+    @property
+    def current_char(self):
+        return self.infix_expression[self.index]
 
-        print(token.text)
+    def parse_to_postfix_expression(self):
+        while self.index < len(self.infix_expression):
+            token = self.read_next_token()
+            print(token.text)
 
     def read_next_token(self):
         token = None
 
-        if self._is_digit(self.infix_expression[self.index]):
+        if self._is_digit(self.current_char):
             token = self._build_next_number_token()
-        elif self._is_operator(self.infix_expression[self.index]):
+        elif self._is_operator(self.current_char):
             token = self._build_next_operator_token()
-        elif self._is_parenthesis(self.infix_expression[self.index]):
+        elif self._is_parenthesis(self.current_char):
             token = self._build_next_parenthesis_token()
 
         return token
@@ -42,7 +46,7 @@ class ExpressionParser:
     def _build_next_number_token(self):
         start_index = self.index
 
-        while self.index < len(self.infix_expression) and self._is_digit(self.infix_expression[self.index]):
+        while self.index < len(self.infix_expression) and self._is_digit(self.current_char):
             self.index += 1
 
         number_text = self.infix_expression[start_index: self.index]
@@ -50,12 +54,12 @@ class ExpressionParser:
         return Number(number_text)
 
     def _build_next_operator_token(self):
-        operator = self.operators[self.infix_expression[self.index]]
+        operator = self.operators[self.current_char]
         self.index += 1
         return operator
 
     def _build_next_parenthesis_token(self):
-        parenthesis = self.operators[self.infix_expression[self.index]]
+        parenthesis = self.operators[self.current_char]
         self.index += 1
         return parenthesis
 
