@@ -24,6 +24,9 @@ class Queue(Generic[T]):
     def front(self) -> T:
         return self.values[0]
 
+    def clear(self):
+        self.values = []
+
     def __str__(self) -> str:
         return f"[{', '.join([str(value) for value in self.values])}]"
 
@@ -51,6 +54,9 @@ class Stack(Generic[T]):
 
     def front(self) -> T:
         return self.values[-1]
+
+    def clear(self):
+        self.values = []
 
     def __str__(self) -> str:
         return f"[{', '.join([str(value) for value in self.values])}]"
