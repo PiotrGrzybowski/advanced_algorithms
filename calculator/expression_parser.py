@@ -2,12 +2,13 @@ from typing import Dict
 
 from calculator.number import Number
 from calculator.operators import Operator
+from calculator.parenthesis import Parenthesis
 from calculator.token import Token
 from structures import Queue, Stack
 
 
 class ExpressionParser:
-    def __init__(self, operators: Dict[str, Operator]):
+    def __init__(self, operators: Dict[str, Token]):
         self.operators = operators
         self.infix_expression = None
         self.output_queue = Queue[Token]()
@@ -33,24 +34,10 @@ class ExpressionParser:
             token = self._build_next_number_token()
         elif self._is_operator(self.infix_expression[self.index]):
             token = self._build_next_operator_token()
-        elif self._is_left_parenthesis(self.infix_expression[self.index]):
-            pass
-        elif self._is_right_parenthesis(self.infix_expression[self.index]):
-            pass
+        elif self._is_parenthesis(self.infix_expression[self.index]):
+            token = self._build_next_parenthesis_token()
 
         return token
-
-    def _is_digit(self, char):
-        return char.isnumeric()
-
-    def _is_operator(self, char):
-        return char in self.operators.keys()
-
-    def _is_left_parenthesis(self, char):
-        return char == "("
-
-    def _is_right_parenthesis(self, char):
-        return char == ")"
 
     def _build_next_number_token(self):
         start_index = self.index
@@ -66,3 +53,23 @@ class ExpressionParser:
         operator = self.operators[self.infix_expression[self.index]]
         self.index += 1
         return operator
+
+    def _build_next_parenthesis_token(self):
+        parenthesis = self.operators[self.infix_expression[self.index]]
+        self.index += 1
+        return parenthesis
+
+    def _is_digit(self, char):
+        return char.isnumeric()
+
+    def _is_operator(self, char):
+        return char in self.operators.keys()
+
+    def _is_parenthesis(self, char):
+        return self._is_left_parenthesis(char) or self._is_right_parenthesis(char)
+
+    def _is_left_parenthesis(self, char):
+        return char == "("
+
+    def _is_right_parenthesis(self, char):
+        return char == ")"

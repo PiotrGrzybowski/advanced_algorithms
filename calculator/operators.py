@@ -26,3 +26,36 @@ class Addition(Operator):
 
     def __str__(self):
         return '+'
+
+
+class Subtraction(Operator):
+    def evaluate(self, number_1, number_2):
+        return number_1 - number_2
+
+    def __str__(self):
+        return '-'
+
+
+class Multiplication(Operator):
+    def evaluate(self, number_1, number_2):
+        return number_1 * number_2
+
+    def __str__(self):
+        return '*'
+
+
+class Division(Operator):
+    def evaluate(self, number_1, number_2):
+        return number_1 / number_2
+
+    def __str__(self):
+        return '/'
+
+
+class Power(Operator):
+    def evaluate(self, number_1, number_2):
+        return number_1 ** number_2
+
+    def __str__(self):
+        return '^'
+
