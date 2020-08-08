@@ -22,6 +22,26 @@ class ExpressionParser:
 
         self.parse_to_postfix_expression()
 
+
+
+    def evaluate_postfix_expression(self):
+        result_stack = Stack[Token]()
+
+        for token in self.output_queue.values:
+            if isinstance(token, Number):
+                result_stack.push(token)
+            else:
+                number_1 = result_stack.pop()
+                number_2 = result_stack.pop()
+                float_result = token.evaluate(number_2.value, number_1.value)
+
+                result_stack.push(Number(str(float_result)))
+
+        if len(result_stack) == 1:
+            return result_stack.pop().value
+        else:
+            raise Exception('eroooooor')
+
     @property
     def current_char(self):
         return self.infix_expression[self.index]

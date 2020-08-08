@@ -9,3 +9,13 @@ class Number(Token):
 
     def __str__(self):
         return self.text
+
+    # def __add__(self, other):
+    #     pass
+    #
+    # def __mul__(self, other):
+    #     pass
+    #
+    # def __sub__(self, other):
+    #     pass
+    # def __po
