@@ -29,3 +29,31 @@ class Queue(Generic[T]):
 
     def __len__(self) -> int:
         return len(self.values)
+
+
+class EmptyStackError(Exception):
+    def __init__(self):
+        super().__init__('You cannot pop from empty stack.')
+
+
+class Stack(Generic[T]):
+    def __init__(self):
+        self.values: List[T] = []
+
+    def push(self, value: T):
+        self.values.append(value)
+
+    def pop(self) -> T:
+        if self.values:
+            return self.values.pop()
+        else:
+            raise EmptyStackError()
+
+    def front(self) -> T:
+        return self.values[-1]
+
+    def __str__(self) -> str:
+        return f"[{', '.join([str(value) for value in self.values])}]"
+
+    def __len__(self) -> int:
+        return len(self.values)
