@@ -13,16 +13,19 @@ class Queue(Generic[T]):
         self.values: List[T] = []
 
     def push(self, value: T):
-        pass
+        self.values.append(value)
 
     def pop(self) -> T:
-        pass
+        if self.values:
+            return self.values.pop(0)
+        else:
+            raise EmptyQueueError()
 
     def front(self) -> T:
-        pass
+        return self.values[0]
 
     def __str__(self) -> str:
-        pass
+        return f"[{', '.join([str(value) for value in self.values])}]"
 
     def __len__(self) -> int:
-        pass
+        return len(self.values)

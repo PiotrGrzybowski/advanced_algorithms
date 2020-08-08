@@ -56,11 +56,14 @@ class TestQueue(TestCase):
     def test_str(self):
         queue = Queue[int]()
 
+        self.assertEqual(str(queue), '[]')
+
         queue.push(1)
         queue.push(2)
         queue.push(3)
 
         self.assertEqual(str(queue), '[1, 2, 3]')
+
 
 
 if __name__ == '__main__':
