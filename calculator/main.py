@@ -5,4 +5,4 @@ addition = Addition(text='+', precedence=2, associativity=Associativity.LEFT)
 operators = {addition.text: addition}
 
 parser = ExpressionParser(operators=operators)
-parser.evaluate_expression(" 12345  ")
+parser.evaluate_expression(" +  ")

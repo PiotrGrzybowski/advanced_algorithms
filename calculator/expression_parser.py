@@ -32,7 +32,7 @@ class ExpressionParser:
         if self._is_digit(self.infix_expression[self.index]):
             token = self._build_next_number_token()
         elif self._is_operator(self.infix_expression[self.index]):
-            pass
+            token = self._build_next_operator_token()
         elif self._is_left_parenthesis(self.infix_expression[self.index]):
             pass
         elif self._is_right_parenthesis(self.infix_expression[self.index]):
@@ -61,3 +61,8 @@ class ExpressionParser:
         number_text = self.infix_expression[start_index: self.index]
 
         return Number(number_text)
+
+    def _build_next_operator_token(self):
+        operator = self.operators[self.infix_expression[self.index]]
+        self.index += 1
+        return operator
